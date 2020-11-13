@@ -15,32 +15,11 @@ class Request extends React.Component {
         const { auth } = this.props;
         if (auth.uid && ! auth.emailVerified) return <Redirect to='/verify' /> 
         else if (! auth.uid &&! auth.emailVerified) return <Redirect to='/signin' />   
-  const {project,statt,req,donat}=this.props;
-let panding=0;
-let response=0;
-let count=0;
-let counts=0
-let curent=new Date().toDateString();
+  const {statt,req}=this.props;
+
   return (
             <Aux>
                 <Row>
-                {
-                    req && req.find(function (avin) {
-      (avin.status !== "null")? response=response+1 : panding=panding+1;
-    }),
-    this.state.resp=response,
-    this.state.pand=panding,
-    this.state.length=req && req.length,
-    donat && donat.map(function (avin) {
-                            let datt=avin.createdAt.toDate().toDateString();
-                            let loc=avin.hospital;
-      ((datt === curent)&& (loc=== statt)) ? count=count+1 : counts=0;
-    }),
-    this.state.donati=count
-    ,
-    this.state.length2=donat && donat.length
-
-  }
                     <Col className=" m-auto" md={10} xl={12}>
                         <Card className='Recent-Users  m-auto'>
                             <Card.Header>

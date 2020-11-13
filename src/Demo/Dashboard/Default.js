@@ -40,7 +40,8 @@ let curent=new Date().toDateString();
     }),
     this.state.donati=count
     ,
-    this.state.length2=donat && donat.length,console.log(this.state)
+    this.state.length2=donat && donat.length,
+    console.log("this.state")
 
   }
 
@@ -220,7 +221,6 @@ return           <h3 className="f-w-300 d-flex align-items-center m-b-0"><i clas
      const project = data ? data : null;
      const req=data2 ? data2:null;
      const donat=data3?data3:null;
-     console.log(project);
      return {
          donat:donat,
          req:req,
