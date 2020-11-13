@@ -23,7 +23,7 @@ class Request extends React.Component {
                     <Col className=" m-auto" md={10} xl={12}>
                         <Card className='Recent-Users  m-auto'>
                             <Card.Header>
-                                <Card.Title as='h5'>Requested Units Details</Card.Title>
+                                <Card.Title as='h5'> Requested Units Details</Card.Title>
                             </Card.Header>
                             <Card.Body className='px-0 py-2'>
                                 <Table responsive hover>
