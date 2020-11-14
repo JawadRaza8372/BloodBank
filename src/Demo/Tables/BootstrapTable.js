@@ -311,7 +311,7 @@ class BootstrapTable extends React.Component {
                                     <option value="WBCOp">WBC O+</option>
                                     <option value="WBCOn">WBC O-</option>
                                     <option value="WBCOther">WBC other</option>
-                                    <option value="Platelets">Platelets</option>
+                                    <option value="Platelet">Platelets</option>
                                     <option value="Cryo">Cryo</option>
                                     <option value="Plasma">Plasma</option>
                                    

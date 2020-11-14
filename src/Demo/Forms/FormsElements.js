@@ -28,7 +28,7 @@ submit=(e)=>{
 
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h5">BLOOD DONORS REGISTRATION FORM | AKUH</Card.Title>
+                                <Card.Title as="h5">BLOOD DONORS REGISTRATION FORM</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                     <Form onSubmit={this.submit}>

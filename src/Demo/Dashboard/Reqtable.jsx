@@ -30,7 +30,7 @@ function Reqtable({doc ,place}) {
 
         firebase.firestore().collection('bloodreq').doc(doc.id).update({status:"Collected"}).then(()=>{
             return(alert(`Updated Successfully`),
-            firebase.firestore().collection('notifications').add({ content: 'Has Rejected Request',
+            firebase.firestore().collection('notifications').add({ content: 'Has Collected',
             organization: `${place}`,requestername:`${doc.name}`,requesterID:`${doc.cnic}`,requestedunits:`${doc.units}`,requestedblood:`${doc.bloodgroup}`, createdAt: new Date()
         }).then(console.log('notification added'))
               
@@ -43,7 +43,78 @@ function Reqtable({doc ,place}) {
                  ): (doc.status==="Accepted")?
                  (  <td><button onClick={collec} style={{width:"120px"}} className="label theme-bg text-white f-12">Collect</button>
                 </td>
-                 ):<td><p>{doc.status}</p></td>;;
+                 ):<td><p>{doc.status}</p></td>;
+let blood="";
+                 switch(doc.bloodgroup){
+                     case "WBCAp":
+                    blood="WBC A+"
+                     break;
+                     case "RBCAp":
+                        blood="RBC A+"
+                         break;
+                         case "RBCBp":
+                            blood="RBC B+"
+                             break;
+                             case "RBCOp":
+                                blood="RBC O+"
+                                 break;
+                                 case "RBCAn":
+                                    blood="RBC A-"
+                                     break;
+                                     case "RBCBN":
+                                        blood="RBC B-"
+                                         break;
+                                         case "RBCABp":
+                                            blood="RBC AB+"
+                                             break;
+                                             case "RBCABn":
+                                                blood="RBC AB-"
+                                                 break;
+                                                 case "RBCOther":
+                                                    blood="RBC Other"
+                                                     break;
+                                                     case "WBCAp":
+                                                        blood="WBC A+"
+                                                         break;
+                                                         case "WBCBp":
+                                                            blood="WBC B+"
+                                                             break;
+                                                             case "WBCOp":
+                                                                blood="WBC O+"
+                                                                 break;
+                                                                 case "WBCABp":
+                                                                    blood="WBC AB+"
+                                                                     break;
+                                                                     case "WBCAn":
+                                                                        blood="WBC A-"
+                                                                         break;
+                                                                         case "WBCBn":
+                                                                            blood="WBC Bn"
+                                                                             break;
+                                                                             case "WBCOn":
+                                                                                blood="WBC O-"
+                                                                                 break;
+                                                                                 case "WBCABn":
+                                                                                    blood="WBC AB-"
+                                                                                     break;
+                                                                                     case "WBCOther":
+                                                                                        blood="WBC Other"
+                                                                                         break;
+                                                                                         case "Platelet":
+                                                                                        blood="Platelets"
+                                                                                         break;
+                                                                                         case "Plasma":
+                                                                                        blood="Plasma"
+                                                                                         break;
+                                                                                         case "Cryo":
+                                                                                        blood="Cryo"
+                                                                                         break;
+                                                                                         default:
+                                                                                             blood="null"
+                                                                                             break;
+
+
+                 }
                  
     return (
         <>
@@ -54,7 +125,7 @@ function Reqtable({doc ,place}) {
                 </td>
                                         <td>
                         <h6 style={{textTransform:"capitalize"}} className="mb-1">{doc.name}</h6>
-                        <p className="m-0">{doc.bloodgroup} | {doc.units} Units | Day I want : {doc.needdate} | Status:{doc.status}</p>
+                        <p className="m-0">{blood} | {doc.units} Units | Day I want : {doc.needdate} | Status:{doc.status}</p>
                                         </td>
                                         <td>
                  <h6 className="text-muted"><i className="fa fa-circle text-c-green f-10 m-r-15"/>{doc.timee.toDate().toLocaleString()}</h6>

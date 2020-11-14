@@ -31,7 +31,12 @@ class Request extends React.Component {
                                     
                                 { req && req.map((avin)=>{
                                     if (`${avin.Reqhospital}`  ===  `${statt}` ){
-                                        return <Reqtable place={statt} doc={avin} key={avin.id}/>
+                                        if ((avin.status !== "Rejected") && (avin.status !== "Collected")){
+                                            return <Reqtable place={statt} doc={avin} key={avin.id}/>
+                                        }
+                                       else {
+                                           return <p style={{textAlign:"center"}}>No Pending Or Collactable Request</p>
+                                       }
 
                                     }
                                     else {
