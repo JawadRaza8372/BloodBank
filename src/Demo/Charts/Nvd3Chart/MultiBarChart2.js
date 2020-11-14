@@ -114,15 +114,9 @@ class MultiBarChart2 extends React.Component {
                      ];
                    
 
-                             return<div className="chart"> <Bar data={this.state.chartdat} width={100} height={30} options={{}}/>
-                        
+                             return<div className="chart"> <Bar data={this.state.chartdat} width={100} height={30} options={{}}/>                             
                              </div>
-         {
-            this.state.chartdat.datasets[0].data=[this.count.a1,this.count.a2,this.count.a3,this.count.a4,this.count.a5,
-            this.count.a6,this.count.a7,this.count.a8,this.count.a9,this.count.a10,this.count.a11
-            ,this.count.a12,this.count.a13,this.count.a14,this.count.a15,this.count.a16,this.count.a17,
-            this.count.a18,this.count.a19,this.count.a20,this.count.a21]}
-         
+    
 
                             }
     else {
