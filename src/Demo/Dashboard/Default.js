@@ -124,7 +124,7 @@ return           <h3 className="f-w-300 d-flex align-items-center m-b-0"><i clas
 
                                         return <Reqtable place={statt} doc={avin} key={avin.id}/>}
                                     else{
-                                        return <p style={{textAlign:"center"}}>No Pending Or Collactable Request</p>
+                                        return null
 
                                     }
                                     }

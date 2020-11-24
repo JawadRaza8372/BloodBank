@@ -25,6 +25,18 @@ function Reqtable({doc ,place}) {
             )    })
 
     }
+    const reject1=(e)=>{
+        e.preventDefault();
+
+        firebase.firestore().collection('bloodreq').doc(doc.id).update({status:"Rejected"}).then(()=>{
+            return(alert(`Updated Successfully`),
+            firebase.firestore().collection('notifications').add({ content: 'Has Rejected Request Due to Shortage Of Stock',
+            organization: `${place}`,requestername:`${doc.name}`,requesterID:`${doc.cnic}`,requestedunits:`${doc.units}`,requestedblood:`${doc.bloodgroup}`, createdAt: new Date()
+        }).then(console.log('notification added'))
+              
+            )    })
+
+    }
     const collec=(e)=>{
         e.preventDefault();
 
@@ -42,6 +54,7 @@ function Reqtable({doc ,place}) {
                  <button onClick={accept} className="label theme-bg text-white f-12">Approve</button></td>
                  ): (doc.status==="Accepted")?
                  (  <td><button onClick={collec} style={{width:"120px"}} className="label theme-bg text-white f-12">Collect</button>
+                 <button onClick={reject1} className="label theme-bg2 text-white f-12">Reject</button>
                 </td>
                  ):<td><p>{doc.status}</p></td>;
 let blood="";
@@ -124,7 +137,7 @@ let blood="";
                  className="rounded-circle" alt="User Profile"/>
                 </td>
                                         <td>
-                        <h6 style={{textTransform:"capitalize"}} className="mb-1">{doc.name}</h6>
+                        <h6 style={{textTransform:"capitalize"}} className="mb-1">Name:    {doc.name}  | CNIC:     {doc.cnic}</h6>
                         <p className="m-0">{blood} | {doc.units} Units | Day I want : {doc.needdate} | Status:{doc.status}</p>
                                         </td>
                                         <td>

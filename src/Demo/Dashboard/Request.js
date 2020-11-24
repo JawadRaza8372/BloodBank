@@ -11,6 +11,9 @@ class Request extends React.Component {
     state={
         res:0
     }
+    mess={
+        st:""
+    }
     render() {
         const { auth } = this.props;
         if (auth.uid && ! auth.emailVerified) return <Redirect to='/verify' /> 
@@ -30,20 +33,18 @@ class Request extends React.Component {
                                     <tbody>
                                     
                                 { req && req.map((avin)=>{
-                                    if (`${avin.Reqhospital}`  ===  `${statt}` ){
-                                        if ((avin.status !== "Rejected") && (avin.status !== "Collected")){
+                                   
+                                        if ((`${avin.Reqhospital}`  ===  `${statt}` )&&(avin.status !== "Rejected") && (avin.status !== "Collected")){
                                             return <Reqtable place={statt} doc={avin} key={avin.id}/>
                                         }
                                        else {
-                                           return <p style={{textAlign:"center"}}>No Pending Or Collactable Request</p>
+                                           return null;
                                        }
 
                                     }
-                                    else {
-                                       return null
-                                    }
-                                })
-                                    
+                                  
+                                )
+                             
                                      }
 
 
