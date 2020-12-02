@@ -1,47 +1,77 @@
 import React,{useState} from 'react'
 import firebase from "firebase/app";
-function Reqtable({doc ,place}) {
+function Reqtable({doc ,place,stock,stockdata}) {
+const st={stockdata};
     const accept=(e)=>{
         e.preventDefault();
-        firebase.firestore().collection('bloodreq').doc(doc.id).update({status:"Accepted"}).then(()=>{
-            return(alert(`Updated Successfully`),
-            
-                firebase.firestore().collection('notifications').add({ content: 'Has Accepted Request',
-                organization: place,requestername:`${doc.name}`,requesterID:`${doc.cnic}`,requestedunits:`${doc.units}`,requestedblood:`${doc.bloodgroup}`, createdAt: new Date()
-            }).then(console.log('notification added'))
-              
-            )    })
-
+           let  group=doc.bloodgroup;
+           let quantity=stockdata.[group];
+           console.log(quantity);
+          if (quantity<=0){
+           return alert(`Not Enough Stock`)
+          }
+          else{
+              if (`${quantity}` >= `${doc.units}`){
+                let  result=(quantity)-parseInt(doc.units);
+                firebase.firestore().collection('bloodreq').doc(doc.id).update({status:"Accepted"}).then(()=>{
+                    
+                        firebase.firestore().collection('notifications').add({ content: 'Has Accepted Request',
+                        organization: place,requestername:`${doc.name}`,requesterID:`${doc.cnic}`,requestedunits:`${doc.units}`,requestedblood:`${doc.bloodgroup}`, createdAt: new Date()
+                    }).then(
+                        firebase.firestore().collection('stocks').doc(stock).update({[group]:result}).then(()=>{
+                            return(alert(`Request Accepted and Stocks Updated`)
+                             
+                           )})
+                      
+                    )    
+    
+    
+              })
+              }
+              else{
+                  return alert("Not Enough Stock")
+              }
+         
+          }
     }
     const reject=(e)=>{
         e.preventDefault();
 
         firebase.firestore().collection('bloodreq').doc(doc.id).update({status:"Rejected"}).then(()=>{
-            return(alert(`Updated Successfully`),
-            firebase.firestore().collection('notifications').add({ content: 'Has Rejected Request',
+            return(alert(`Rejected Successfully`),
+            firebase.firestore().collection('notifications').add({ content: 'Has Rejected Request Due To Shortage Of Stock',
             organization: `${place}`,requestername:`${doc.name}`,requesterID:`${doc.cnic}`,requestedunits:`${doc.units}`,requestedblood:`${doc.bloodgroup}`, createdAt: new Date()
         }).then(console.log('notification added'))
               
             )    })
 
     }
-    const reject1=(e)=>{
+    const cancel=(e)=>{
         e.preventDefault();
-
-        firebase.firestore().collection('bloodreq').doc(doc.id).update({status:"Rejected"}).then(()=>{
-            return(alert(`Updated Successfully`),
-            firebase.firestore().collection('notifications').add({ content: 'Has Rejected Request Due to Shortage Of Stock',
+        let  group=doc.bloodgroup;
+        let quantity=stockdata.[group];
+        let  result=(quantity)+parseInt(doc.units);
+        firebase.firestore().collection('bloodreq').doc(doc.id).update({status:"Canceled"}).then(()=>{
+           
+            firebase.firestore().collection('notifications').add({ content: 'Has Canceled Due To Not Collecting On Time.',
             organization: `${place}`,requestername:`${doc.name}`,requesterID:`${doc.cnic}`,requestedunits:`${doc.units}`,requestedblood:`${doc.bloodgroup}`, createdAt: new Date()
-        }).then(console.log('notification added'))
+        }).then(
+
+            firebase.firestore().collection('stocks').doc(stock).update({[group]:result}).then(()=>{
+                return(alert(`Request Canceled and Stocks Updated`)
+                 
+               )})
+        )
               
-            )    })
+               })
+
 
     }
     const collec=(e)=>{
         e.preventDefault();
 
         firebase.firestore().collection('bloodreq').doc(doc.id).update({status:"Collected"}).then(()=>{
-            return(alert(`Updated Successfully`),
+            return(alert(`Collected Successfully`),
             firebase.firestore().collection('notifications').add({ content: 'Has Collected',
             organization: `${place}`,requestername:`${doc.name}`,requesterID:`${doc.cnic}`,requestedunits:`${doc.units}`,requestedblood:`${doc.bloodgroup}`, createdAt: new Date()
         }).then(console.log('notification added'))
@@ -53,8 +83,9 @@ function Reqtable({doc ,place}) {
                  (  <td><button onClick={reject} className="label theme-bg2 text-white f-12">Reject</button>
                  <button onClick={accept} className="label theme-bg text-white f-12">Approve</button></td>
                  ): (doc.status==="Accepted")?
-                 (  <td><button onClick={collec} style={{width:"120px"}} className="label theme-bg text-white f-12">Collect</button>
-                 <button onClick={reject1} className="label theme-bg2 text-white f-12">Reject</button>
+                 (  <td>
+                                  <button onClick={cancel} className="label theme-bg2 text-white f-12">Cancel</button>
+                 <button onClick={collec} className="label theme-bg text-white f-12">Collect</button>
                 </td>
                  ):<td><p>{doc.status}</p></td>;
 let blood="";
@@ -128,7 +159,7 @@ let blood="";
 
 
                  }
-                 
+
     return (
         <>
              <tr className="unread">

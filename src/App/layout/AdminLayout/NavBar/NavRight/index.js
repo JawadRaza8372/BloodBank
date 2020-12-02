@@ -40,8 +40,8 @@ class NavRight extends Component {
 </b>
                                 </div>
                                 <ul className="pro-body">
-                                    <li><p style={{marginLeft:"15px",textTransform:"capitalize"}}>Hospital:{profiles.hospital}</p></li>
-                                    <li><p style={{marginLeft:"15px",textTransform:"capitalize"}}>City:{profiles.city}</p></li>
+                                    <li><p style={{marginLeft:"15px",textTransform:"capitalize"}}><span style={{textDecoration:"underline"}}>Organization</span>: {profiles.hospital}</p></li>
+                                    <li><p style={{marginLeft:"15px",textTransform:"capitalize"}}><span style={{textDecoration:"underline"}}>City</span>: {profiles.city}</p></li>
                                     <li><a onClick={this.props.signOut} style={{textTransform:"capitalize"}} href={DEMO.BLANK_LINK} className="dropdown-item"> <i className="feather icon-log-out"/> Logout</a></li>
                                     </ul>
                             </Dropdown.Menu>

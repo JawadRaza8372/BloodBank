@@ -28,7 +28,7 @@ let curent=new Date().toDateString();
                 {
                     req && req.find(function (avin) {
       ((avin.status !== "null")&&(`${avin.Reqhospital}` === `${statt}`))?
-       response=response+1 : ((avin.status === "null") && (`${avin.Reqhospital}` === `${statt}`))? panding=panding+1:l=0;
+       response=response+1  : ((avin.status === "null") && (`${avin.Reqhospital}` === `${statt}`))? panding=panding+1:l=0;
     }),
     this.state.resp=response,
     this.state.pand=panding,
@@ -53,7 +53,7 @@ let curent=new Date().toDateString();
                                 <div className="row d-flex align-items-center">
                                     <div className="col-9">
                                         <h4 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-droplet text-c-red f-50 m-r-5"/>  Responded |{this.state.resp}  
-                                        <i className="feather icon-droplet text-c-red f-50 m-r-5"/> Pending  |{this.state.pand  }  </h4>
+                                        <i className="feather icon-droplet text-c-red f-50 m-r-5"/> Pending  |{this.state.pand} </h4>
                                     </div>
 
                                     
@@ -120,7 +120,7 @@ return           <h3 className="f-w-300 d-flex align-items-center m-b-0"><i clas
                                     
                                 { req && req.map((avin)=>{
                                     if (`${avin.Reqhospital}`=== `${statt}`){
-                                        if (avin.status=== `null`){
+                                        if (`${avin.status}`=== `null`){
 
                                         return <Reqtable place={statt} doc={avin} key={avin.id}/>}
                                     else{
@@ -232,4 +232,4 @@ return           <h3 className="f-w-300 d-flex align-items-center m-b-0"><i clas
       
  }
 
-export default compose(connect(mapStateToProps), firestoreConnect([{ collection: 'stocks'},{ collection: 'clientshistory',orderBy:["createdAt","desc"]},{ collection: 'bloodreq',orderBy:["timee","desc"],limit:10 }]))(Dashboard);
+export default compose(connect(mapStateToProps), firestoreConnect([{ collection: 'stocks'},{ collection: 'clientshistory',orderBy:["createdAt","desc"]},{ collection: 'bloodreq',orderBy:["timee","desc"] }]))(Dashboard);

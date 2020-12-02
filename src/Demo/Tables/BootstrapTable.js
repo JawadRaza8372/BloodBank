@@ -24,30 +24,44 @@ class BootstrapTable extends React.Component {
    const     handlein=(e)=>{
             this.setState({ [e.target.id]:e.target.value});
           }
-     const     submitt=(e)=>{
+     const submitt=(e)=>{
             e.preventDefault();
             console.log("addd");
-            group=`${this.state.bloodgroup}`;
-            result=parseInt(this.state.quantity)+(this.state.bg[group]);
-            firebase.firestore().collection('stocks').doc(this.state.id).update({[group]:result}).then(()=>{
-                return(alert(`Updated Successfully`)
-                  
-                )});
+            group=this.state.bloodgroup;
+            if (group){
+                result=parseInt(this.state.quantity)+(this.state.bg[group]);
+                firebase.firestore().collection('stocks').doc(this.state.id).update({[group]:result}).then(()=>{
+                    return(alert(`Updated Successfully`)
+                      
+                    )});
+            }
+            else{
+                return alert("Select A Blood Group")
     
-          }
+          }}
        const   submitt1=(e)=>{
         e.preventDefault();
             
         console.log("remove");
-        group=`${this.state.bloodgroup}`;
-        result=(this.state.bg[group])-parseInt(this.state.quantity);
-        if (`${result}`<0){
-            result=0;
+        group=this.state.bloodgroup;
+        if (group){
+            result=(this.state.bg[group])-parseInt(this.state.quantity);
+            if (`${result}`<0){
+                return alert("Invalid Entry")
+            }
+            else{
+                firebase.firestore().collection('stocks').doc(this.state.id).update({[group]:result}).then(()=>{
+                    return(alert(`Updated Successfully`)
+                    )    })
+        
+            }
+            
         }
-        firebase.firestore().collection('stocks').doc(this.state.id).update({[group]:result}).then(()=>{
-            return(alert(`Updated Successfully`)
-            )    })
-
+        else{
+            return alert("Select A Blood Group")
+        }
+       
+        
       }
           
    if (project){

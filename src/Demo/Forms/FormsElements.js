@@ -55,6 +55,7 @@ submit=(e)=>{
                                                 <option>American Indian</option>
                                                 <option>Black African American</option>
                                                 <option>Native Hawaiian</option>
+                                                <option>Hispanic</option>
                                             </select><br/><br/>
                                 <label style={{textAlign:"left!important",marginLeft:"2px"}}>Date Of Birth</label>
                                 <div className="input-group mb-3">
@@ -78,7 +79,7 @@ submit=(e)=>{
                                 </div>
                                
                                 <div className="input-group mb-4">
-                                    <input type="password" onChange={this.handlein} id="password" autoComplete="off" className="form-control" placeholder="password"/>
+                                    <input type="password" onChange={this.handlein} id="password" autoComplete="off" className="form-control" placeholder="Password"/>
                                 </div>
                                 <select defaultValue="Gender" onChange={this.handlein} style={{width:"100%",height:"40px",backgroundColor:"#f4f7fa",borderColor:"#ced4da",color:"#495057"}} name="gender" id="gender">
                                  <option disabled>Gender</option>
@@ -100,7 +101,7 @@ submit=(e)=>{
                                                 <option>AB-</option>
                                                 <option>O+</option>
                                                 <option>O-</option>
-                                                <option>other(Minorties Blood Groups)</option>
+                                                <option>Other(Minority Blood Groups)</option>
                                                
                                 </select>
 
@@ -112,7 +113,7 @@ submit=(e)=>{
                                     </Row>    <br/>
                                     <Row>
                                     <div className="ml-3">
-                                      <button  className="btn btn-primary shadow-2 mb-4">submit</button></div>
+                                      <button  className="btn btn-primary shadow-2 mb-4">Submit</button></div>
                                     </Row>
                                     </Form>
                             </Card.Body>

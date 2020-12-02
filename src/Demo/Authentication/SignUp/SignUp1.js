@@ -44,7 +44,7 @@ class SignUp1 extends React.Component {
                                     <input type="email" onChange={this.handlein} id="email" autoComplete="off" className="form-control" placeholder="Email"/>
                                 </div> 
                                 <div className="input-group mb-4">
-                                    <input type="password" onChange={this.handlein} id="password" autoComplete="off" className="form-control" placeholder="password"/>
+                                    <input type="password" onChange={this.handlein} id="password" autoComplete="off" className="form-control" placeholder="Password"/>
                                 </div>
                                 <div className="row">
                                 <div className="col-12">

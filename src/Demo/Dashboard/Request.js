@@ -9,7 +9,7 @@ import Reqtable from "./Reqtable";
 
 class Request extends React.Component {
     state={
-        res:0
+        res:0,idds:""
     }
     mess={
         st:""
@@ -18,8 +18,7 @@ class Request extends React.Component {
         const { auth } = this.props;
         if (auth.uid && ! auth.emailVerified) return <Redirect to='/verify' /> 
         else if (! auth.uid &&! auth.emailVerified) return <Redirect to='/signin' />   
-  const {statt,req}=this.props;
-
+  const {statt,req,project}=this.props;
   return (
             <Aux>
                 <Row>
@@ -32,10 +31,17 @@ class Request extends React.Component {
                                 <Table responsive hover>
                                     <tbody>
                                     
-                                { req && req.map((avin)=>{
-                                   
-                                        if ((`${avin.Reqhospital}`  ===  `${statt}` )&&(avin.status !== "Rejected") && (avin.status !== "Collected")){
-                                            return <Reqtable place={statt} doc={avin} key={avin.id}/>
+                                {   project && project.map((avin)=>{
+    if (`${avin.hospitalf}` === `${statt}`){
+       this.state.idds=avin.id;
+       this.state.dataa=avin;
+
+    }
+}),
+                                    
+                                     req && req.map((avin)=>{
+                                        if ((`${avin.Reqhospital}`  ===  `${statt}` )&&(avin.status !== "Rejected") && (avin.status !== "Collected") && (avin.status !== "Canceled")){
+                                            return <Reqtable place={statt} stockdata={this.state.dataa} stock={this.state.idds} doc={avin} key={avin.id}/>
                                         }
                                        else {
                                            return null;
@@ -79,4 +85,4 @@ class Request extends React.Component {
       
  }
 
-export default compose(connect(mapStateToProps), firestoreConnect([{ collection: 'bloodreq',orderBy:["timee","desc"] }]))(Request);
+ export default compose(connect(mapStateToProps), firestoreConnect([{ collection: 'stocks'},{ collection: 'bloodreq',orderBy:["timee","desc"]},]))(Request);

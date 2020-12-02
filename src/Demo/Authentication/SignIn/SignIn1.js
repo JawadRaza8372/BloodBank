@@ -43,12 +43,12 @@ class SignIn1 extends React.Component {
                                     <input type="email" onChange={this.handlein} id="email" autoComplete="off" className="form-control" placeholder="Email"/>
                                 </div>
                                 <div className="input-group mb-4">
-                                    <input type="password" onChange={this.handlein} id="password" autoComplete="off" className="form-control" placeholder="password"/>
+                                    <input type="password" onChange={this.handlein} id="password" autoComplete="off" className="form-control" placeholder="Password"/>
                                 </div>
                                
                                 { authError ? <p style={{color:"red"}}>{authError}</p> : null }
                                 <button type="submit" className="btn btn-primary shadow-2 mb-4">Login</button>
-                                <p className="mb-2 text-muted">Forgot password? <NavLink to="/resetpassword">Reset</NavLink></p>
+                                <p className="mb-2 text-muted">Forgot Password? <NavLink to="/resetpassword">Reset</NavLink></p>
                                 </form>
                             </div>
                         </div>

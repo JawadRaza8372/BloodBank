@@ -19,7 +19,7 @@ class MultiBarChart2 extends React.Component {
     "RBC Other","WBC A+","WBC B+","WBC O+","WBC B-","WBC A-","WBC O-","WBC AB+","WBC AB-",
     "WBC Other","Platelet","Cryo","Plasma"],
     datasets:[
-       { label:"Number OF Requests",
+       { label:"Number Of Requests",
        data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     backgroundColor:"grey"
       
