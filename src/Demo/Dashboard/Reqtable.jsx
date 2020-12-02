@@ -7,11 +7,11 @@ const st={stockdata};
            let  group=doc.bloodgroup;
            let quantity=stockdata.[group];
            console.log(quantity);
-          if (quantity<=0){
+          if (quantity <= 0){
            return alert(`Not Enough Stock`)
           }
           else{
-              if (`${quantity}` >= `${doc.units}`){
+              if (quantity >= parseInt(doc.units)){
                 let  result=(quantity)-parseInt(doc.units);
                 firebase.firestore().collection('bloodreq').doc(doc.id).update({status:"Accepted"}).then(()=>{
                     
@@ -168,7 +168,7 @@ let blood="";
                  className="rounded-circle" alt="User Profile"/>
                 </td>
                                         <td>
-                        <h6 style={{textTransform:"capitalize"}} className="mb-1">Name:    {doc.name}  | CNIC:     {doc.cnic}</h6>
+                        <h6 style={{textTransform:"capitalize"}} className="mb-1">Name:    {doc.name}  | CNIC:     {doc.cnic}  | Contact Number:     {doc.PhoneNo}</h6>
                         <p className="m-0">{blood} | {doc.units} Units | Day I want : {doc.needdate} | Status:{doc.status}</p>
                                         </td>
                                         <td>
