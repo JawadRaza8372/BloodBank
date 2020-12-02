@@ -168,11 +168,11 @@ let blood="";
                  className="rounded-circle" alt="User Profile"/>
                 </td>
                                         <td>
-                        <h6 style={{textTransform:"capitalize"}} className="mb-1">Name:    {doc.name}  | CNIC:     {doc.cnic}  | Contact Number:     {doc.PhoneNo}</h6>
+                        <h6 style={{textTransform:"capitalize"}} className="mb-1">Name:    {doc.name}  | CNIC:     {doc.cnic}  | Contact:     {doc.PhoneNo}</h6>
                         <p className="m-0">{blood} | {doc.units} Units | Day I want : {doc.needdate} | Status:{doc.status}</p>
                                         </td>
                                         <td>
-                 <h6 className="text-muted"><i className="fa fa-circle text-c-green f-10 m-r-15"/>{doc.timee.toDate().toLocaleString()}</h6>
+                 <p className="text-muted"><i className="fa fa-circle text-c-green f-10 m-r-15"/>{doc.timee.toDate().toLocaleString()}</p>
                                         </td>
              { link
                  }

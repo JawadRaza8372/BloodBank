@@ -300,12 +300,12 @@ class BootstrapTable extends React.Component {
                     <div className="auth-content">
     <div className="card" style={{width:"300px"}}>
                             <div className="card-body text-center">
-    <form onSubmit={this.submitt}>
+    <form style={{paddingRight:"15px",paddingLeft:"15px"}} onSubmit={this.submitt}>
     <Row>
-<h2 style={{color:"#1dc4e9",textAlign:"center"}} className="m-3">Stock Updation</h2></Row>
+<h3 style={{color:"#1dc4e9",textAlign:"left"}} className="m-3">Stock Updation</h3></Row>
 <Row>
 
-                     <select defaultValue="Blood Group" onChange={handlein} style={{width:"100%",height:"40px",backgroundColor:"#f4f7fa",borderColor:"#ced4da",color:"#495057"}} name="bloodgroup" id="bloodgroup">
+                     <select defaultValue="Blood Group" onChange={handlein} style={{width:"90%",marginLeft:"12px",height:"40px",backgroundColor:"#f4f7fa",borderColor:"#ced4da",color:"#495057"}} name="bloodgroup" id="bloodgroup">
                      <option disabled>Blood Group</option>
                                     <option value="RBCAp">RBC A+</option>
                                     <option value="RBCAn">RBC A-</option>
@@ -335,7 +335,7 @@ class BootstrapTable extends React.Component {
 <Row>
 
                <div className="input-group mb-4">
-                        <input type="number" onChange={handlein} id="quantity" autoComplete="off" className="form-control" placeholder="Quantity"/>
+                        <input type="number"  onChange={handlein} id="quantity" autoComplete="off" className="form-control" placeholder="Quantity"/>
                     </div>
 </Row><Row>
 <Col>
