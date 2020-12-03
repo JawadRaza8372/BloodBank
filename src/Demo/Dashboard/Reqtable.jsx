@@ -133,7 +133,7 @@ let blood="";
                                                                         blood="WBC A-"
                                                                          break;
                                                                          case "WBCBn":
-                                                                            blood="WBC Bn"
+                                                                            blood="WBC B-"
                                                                              break;
                                                                              case "WBCOn":
                                                                                 blood="WBC O-"
