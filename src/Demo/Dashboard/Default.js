@@ -118,11 +118,18 @@ return           <h3 className="f-w-300 d-flex align-items-center m-b-0"><i clas
                                 <Table responsive hover>
                                     <tbody>
                                     
-                                { req && req.map((avin)=>{
+                                {  project && project.map((avin)=>{
+    if (`${avin.hospitalf}` === `${statt}`){
+       this.state.idds=avin.id;
+       this.state.dataa=avin;
+
+    }
+}),
+                                    req && req.map((avin)=>{
                                     if (`${avin.Reqhospital}`=== `${statt}`){
                                         if (`${avin.status}`=== `null`){
 
-                                        return <Reqtable place={statt} doc={avin} key={avin.id}/>}
+                                            return <Reqtable place={statt} stockdata={this.state.dataa} stock={this.state.idds} doc={avin} key={avin.id}/>}
                                     else{
                                         return null
 
