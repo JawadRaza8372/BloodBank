@@ -36,7 +36,7 @@ state={
             'pcoded-navbar',
         ];
         const {auth}=this.props;
-if (`${auth.uid}`=== "Wwt0hCQL0pUKEAE3Z8KS5uiTs2W2" ||`${auth.uid}`=== "aGrQani9UzT4S3nfmKLDHo1L1Yg1" )   this.state.navv=navigation
+if (`${auth.uid}`=== "b6LObvAbFGYhixfzKnLe1JjpJJA2" ||`${auth.uid}`=== "aGrQani9UzT4S3nfmKLDHo1L1Yg1" )   this.state.navv=navigation
 else {
     this.state.navv=navigation2
 }
